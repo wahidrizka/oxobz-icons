@@ -1,6 +1,6 @@
 {
     "name": "@oxobz/icons",
-    "version": "1.0.0",
+    "version": "1.0.1",
     "description": "SVG icon components for React — 541 beautifully crafted icons",
     "type": "module",
     "main": "./dist/index.cjs",
