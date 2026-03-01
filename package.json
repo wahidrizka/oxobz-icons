@@ -1,0 +1,51 @@
+{
+    "name": "@oxobz/icons",
+    "version": "0.1.0",
+    "description": "SVG icon components — pixel-perfect Geist icons replica",
+    "type": "module",
+    "main": "./dist/index.cjs",
+    "module": "./dist/index.js",
+    "types": "./dist/index.d.ts",
+    "exports": {
+        ".": {
+            "types": "./dist/index.d.ts",
+            "import": "./dist/index.js",
+            "require": "./dist/index.cjs"
+        }
+    },
+    "sideEffects": false,
+    "files": [
+        "dist"
+    ],
+    "scripts": {
+        "dev": "vite",
+        "build": "tsc --noEmit && vite build",
+        "generate": "tsx scripts/generate.ts",
+        "typecheck": "tsc --noEmit"
+    },
+    "peerDependencies": {
+        "react": ">=18.0.0"
+    },
+    "keywords": [
+        "icons",
+        "react",
+        "svg",
+        "geist"
+    ],
+    "author": "wahidrizka",
+    "license": "MIT",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/wahidrizka/oxobz-icons"
+    },
+    "devDependencies": {
+        "@types/react": "^19.2.14",
+        "@vitejs/plugin-react": "^5.1.4",
+        "react": "^19.2.4",
+        "react-dom": "^19.2.4",
+        "tsx": "^4.21.0",
+        "typescript": "^5.9.3",
+        "vite": "^7.3.1",
+        "vite-plugin-dts": "^4.5.4"
+    }
+}

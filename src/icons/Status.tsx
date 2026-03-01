@@ -1,0 +1,23 @@
+import { forwardRef } from 'react';
+import type { IconProps } from '../types';
+
+export const Status = forwardRef<SVGSVGElement, IconProps>(
+    ({ size = 16, color, style, ...props }, ref) => (
+        <svg
+            ref={ref}
+            data-testid="geist-icon"
+            height={size}
+            strokeLinejoin="round"
+            viewBox="0 0 16 16"
+            width={size}
+            style={{ color: color ?? 'currentcolor', ...style }}
+            {...props}
+        >
+            <path
+                                                    d="M13 8C13 10.7614 10.7614 13 8 13C5.23858 13 3 10.7614 3 8C3 5.23858 5.23858 3 8 3C10.7614 3 13 5.23858 13 8Z"
+                                                    fill="currentColor"></path>
+        </svg>
+    ),
+);
+
+Status.displayName = 'Status';
