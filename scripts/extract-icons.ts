@@ -43,7 +43,7 @@ function extractIcons(html: string): IconData[] {
         const iconName = nameMatch[1];
 
         // Extract the full SVG element, handling possible nested <svg> elements
-        // We find the opening <svg data-testid="geist-icon"> and then track nesting depth
+        // We find the opening <svg data-testid="..."> and then track nesting depth
         const svgStartMatch = block.match(/<svg\s+data-testid="geist-icon"([^>]*)>/);
         if (!svgStartMatch) continue;
 
@@ -143,7 +143,7 @@ async function main(): Promise<void> {
     // Save each icon as SVG
     let saved = 0;
     for (const icon of uniqueIcons) {
-        const svgContent = `<svg data-testid="geist-icon" height="${icon.height}" stroke-linejoin="${icon.strokeLinejoin}" viewBox="${icon.viewBox}" width="${icon.width}" style="${icon.style}">\n${icon.innerContent}\n</svg>`;
+        const svgContent = `<svg height="${icon.height}" stroke-linejoin="${icon.strokeLinejoin}" viewBox="${icon.viewBox}" width="${icon.width}" style="${icon.style}">\n${icon.innerContent}\n</svg>`;
 
         const filePath = join(SVG_DIR, `${icon.name}.svg`);
         await writeFile(filePath, svgContent, 'utf-8');
