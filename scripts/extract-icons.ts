@@ -1,9 +1,9 @@
 /**
- * Script: Extract ALL Geist icons from inspect element HTML
+ * Script: Extract ALL icons from inspect element HTML
  *
  * Parses _nextstatic/component-inspect-element/icons.html
- * Extracts each <svg data-testid="geist-icon"> and its icon name
- * Saves as individual SVG files in oxobz-icons/svg/
+ * Extracts each <svg data-testid="..."> and its icon name
+ * Saves as individual SVG files in svg/
  *
  * Usage: npx tsx scripts/extract-icons.ts
  */

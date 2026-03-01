@@ -1,16 +1,16 @@
 /**
  * Script: SVG → React Component Generator
  *
- * Reads all .svg files from oxobz-icons/svg/
+ * Reads all .svg files from svg/
  * Converts each to a React component in src/icons/
  * Updates src/index.ts with named exports
  *
- * Key attributes (from Geist inspect element):
+ * Key attributes:
  * - viewBox: read from each SVG (varies per icon)
  * - height="16", width="16" (default)
  * - stroke-linejoin="round"
  * - fill="currentColor" on inner elements (NOT on <svg>)
- * - data-testid="geist-icon"
+ * - data-testid="oxobz-icon"
  * - style="color: currentcolor;"
  *
  * Usage: npm run generate
@@ -207,7 +207,7 @@ export const ${componentName} = forwardRef<SVGSVGElement, IconProps>(
     ({ size = 16, color, style, ...props }, ref) => (
         <svg
             ref={ref}
-            data-testid="geist-icon"
+            data-testid="oxobz-icon"
             height={size}
             strokeLinejoin="round"
             viewBox="${viewBox}"

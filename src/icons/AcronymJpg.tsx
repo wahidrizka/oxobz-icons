@@ -5,7 +5,7 @@ export const AcronymJpg = forwardRef<SVGSVGElement, IconProps>(
     ({ size = 16, color, style, ...props }, ref) => (
         <svg
             ref={ref}
-            data-testid="geist-icon"
+            data-testid="oxobz-icon"
             height={size}
             strokeLinejoin="round"
             viewBox="0 0 20 16"
