@@ -37,7 +37,7 @@
     "license": "MIT",
     "repository": {
         "type": "git",
-        "url": "https://github.com/wahidrizka/oxobz-icons"
+        "url": "git+https://github.com/wahidrizka/oxobz-icons.git"
     },
     "devDependencies": {
         "@types/react": "^19.2.14",
