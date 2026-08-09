@@ -8,7 +8,7 @@
                                                     </mask>
                                                     <rect x="3.5" y="3.5" width="9" height="9" rx="0.5"
                                                         stroke="var(--ds-gray-1000)" fill="transparent" stroke-width="4"
-                                                        mask="url(#path-2-inside-1_872_3187)"></rect>
+                                                        mask="url(#path-2-inside-1_872_3187)" stroke-linejoin="round"></rect>
                                                 </g>
                                                 <defs>
                                                     <linearGradient id="paint0_linear_872_3187" x1="8.68832"

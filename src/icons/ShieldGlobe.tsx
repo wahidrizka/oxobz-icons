@@ -2,21 +2,20 @@ import { forwardRef } from 'react';
 import type { IconProps } from '../types';
 
 export const ShieldGlobe = forwardRef<SVGSVGElement, IconProps>(
-    ({ size = 16, color, style, ...props }, ref) => (
+    ({ size = 16, color = 'currentColor', style, ...props }, ref) => (
         <svg
             ref={ref}
-            data-testid="oxobz-icon"
-            height={size}
-            strokeLinejoin="round"
             viewBox="0 0 16 16"
+            height={size}
             width={size}
-            style={{ color: color ?? 'currentcolor', ...style }}
+            data-slot="oxobz-icon"
+            style={{ color: color === 'currentColor' ? 'currentColor' : `var(--ds-${color})`, ...style }}
             {...props}
         >
             <path
                                                     d="M11.25 4.25V3.5C9.35033 2.86678 6 2.58921 6 0C6 2.58921 2.64967 2.86678 0.75 3.5V9.52717C0.75 11.2011 1.67915 12.7367 3.16197 13.5134L4.5 14.2143"
                                                     stroke="currentColor" strokeWidth="1.5" strokeLinecap="square"
-                                                    fill="transparent"></path>
+                                                    fill="transparent" strokeLinejoin="round"></path>
                                                 <circle cx="11.5" cy="11.5" r="3.875" stroke="currentColor"
                                                     strokeWidth="1.25" strokeLinecap="round" strokeLinejoin="round"
                                                     fill="transparent"></circle>

@@ -5,7 +5,7 @@
                                                         fill="url(#paint0_linear_872_3188)"></path>
                                                     <rect x="4.5" y="4.5" width="7" height="7" rx="3.5"
                                                         stroke="var(--ds-gray-1000)" fill="transparent"
-                                                        stroke-width="2"></rect>
+                                                        stroke-width="2" stroke-linejoin="round"></rect>
                                                 </g>
                                                 <defs>
                                                     <linearGradient id="paint0_linear_872_3188" x1="8.68832"

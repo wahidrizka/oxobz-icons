@@ -2,15 +2,14 @@ import { forwardRef } from 'react';
 import type { IconProps } from '../types';
 
 export const Stop = forwardRef<SVGSVGElement, IconProps>(
-    ({ size = 16, color, style, ...props }, ref) => (
+    ({ size = 16, color = 'currentColor', style, ...props }, ref) => (
         <svg
             ref={ref}
-            data-testid="oxobz-icon"
-            height={size}
-            strokeLinejoin="round"
             viewBox="0 0 16 16"
+            height={size}
             width={size}
-            style={{ color: color ?? 'currentcolor', ...style }}
+            data-slot="oxobz-icon"
+            style={{ color: color === 'currentColor' ? 'currentColor' : `var(--ds-${color})`, ...style }}
             {...props}
         >
             <path fill="currentColor" d="M10.9 0a1 1 0 0 1 .7.3l4.1 4.1.07.07a1 1 0 0 1 .23.63v5.8a1 1 0 0 1-.3.7l-4.1 4.1a1 1 0 0 1-.7.3H5a1 1 0 0 1-.53-.23l-.08-.06-4.1-4.1A1 1 0 0 1 0 10.9V5.1a1 1 0 0 1 .3-.7L4.4.3A1 1 0 0 1 5 0h5.9M1.5 5.3v5.4l3.8 3.8h5.4l3.8-3.8V5.3l-3.8-3.8H5.3zM8 10a1 1 0 1 1 0 2 1 1 0 0 1 0-2m.75-1.25h-1.5v-5h1.5z"></path>

@@ -5,13 +5,35 @@
  * Converts each to a React component in src/icons/
  * Updates src/index.ts with named exports
  *
- * Key attributes:
+ * The emitted <svg> mirrors Geist's BaseIcon, read from their production
+ * bundle (chunk 2npuotd4i91i8.js, 31 Jul 2026) rather than guessed:
+ *
+ *   jsx("svg", { viewBox, height, width, "data-slot": "geist-icon",
+ *                "data-glyph": glyph,
+ *                style: { color: "currentColor" === color
+ *                            ? "currentColor" : `var(--ds-${color})` , ...style } })
+ *   calculateIconDimensions: height = size ?? generatedHeight,
+ *                            width  = height * aspectRatio
+ *
+ * Applied here:
  * - viewBox: read from each SVG (varies per icon)
- * - height="16", width="16" (default)
- * - stroke-linejoin="round"
+ * - height={size}, width={size * aspectRatio} — aspectRatio from the viewBox,
+ *   so the 11 non-square icons (acronym-*) keep their proportions
+ * - data-slot="oxobz-icon" — same role as Geist's data-slot="geist-icon",
+ *   renamed for oxobz branding. It is the hook component CSS uses to size
+ *   prefix/suffix icons, so it must be present on every icon.
+ * - color takes a TOKEN NAME (e.g. "gray-900") and expands to
+ *   var(--ds-gray-900); "currentColor" (the default) is passed through
+ * - no stroke-linejoin on the wrapper: Geist puts it on the elements that need
+ *   it, and our SVG sources were updated to match
  * - fill="currentColor" on inner elements (NOT on <svg>)
- * - data-testid="oxobz-icon"
- * - style="color: currentcolor;"
+ *
+ * NOT reproduced: `data-glyph`. Production tags some icons (e.g. the circular
+ * ones) with it and two CSS rules key off `[data-glyph=circular]` for optical
+ * spacing. The per-icon values live in Vercel's private assets package, and
+ * only one value ("circular") is observable from the public bundles — so the
+ * mapping for our 541 icons is unknown and is deliberately left out rather
+ * than guessed.
  *
  * Usage: npm run generate
  */
@@ -200,19 +222,25 @@ async function generateIcon(svgPath: string): Promise<{ name: string; fileName: 
     // Convert to JSX
     const jsxContent = convertToJSX(innerContent);
 
+    // Aspect ratio dari viewBox — dipakai menghitung lebar, persis seperti
+    // `calculateIconDimensions` produksi: height = size, width = size * ratio.
+    // 11 ikon (acronym-*) tidak persegi; tanpa ini mereka ter-render menyempit.
+    const vb = viewBox.split(/[\s,]+/).map(Number);
+    const aspectRatio = vb.length === 4 && vb[3] ? vb[2] / vb[3] : 1;
+    const widthExpr = aspectRatio === 1 ? '{size}' : `{size * ${aspectRatio}}`;
+
     const component = `import { forwardRef } from 'react';
 import type { IconProps } from '../types';
 
 export const ${componentName} = forwardRef<SVGSVGElement, IconProps>(
-    ({ size = 16, color, style, ...props }, ref) => (
+    ({ size = 16, color = 'currentColor', style, ...props }, ref) => (
         <svg
             ref={ref}
-            data-testid="oxobz-icon"
-            height={size}
-            strokeLinejoin="round"
             viewBox="${viewBox}"
-            width={size}
-            style={{ color: color ?? 'currentcolor', ...style }}
+            height={size}
+            width=${widthExpr}
+            data-slot="oxobz-icon"
+            style={{ color: color === 'currentColor' ? 'currentColor' : \`var(--ds-\${color})\`, ...style }}
             {...props}
         >
             ${jsxContent}

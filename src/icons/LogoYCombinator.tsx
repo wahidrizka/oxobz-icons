@@ -2,15 +2,14 @@ import { forwardRef } from 'react';
 import type { IconProps } from '../types';
 
 export const LogoYCombinator = forwardRef<SVGSVGElement, IconProps>(
-    ({ size = 16, color, style, ...props }, ref) => (
+    ({ size = 16, color = 'currentColor', style, ...props }, ref) => (
         <svg
             ref={ref}
-            data-testid="oxobz-icon"
-            height={size}
-            strokeLinejoin="round"
             viewBox="0 0 16 16"
+            height={size}
             width={size}
-            style={{ color: color ?? 'currentcolor', ...style }}
+            data-slot="oxobz-icon"
+            style={{ color: color === 'currentColor' ? 'currentColor' : `var(--ds-${color})`, ...style }}
             {...props}
         >
             <path d="M16 0H0V16H16V0Z" fill="#FB651E"></path>

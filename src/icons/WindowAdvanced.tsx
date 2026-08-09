@@ -2,15 +2,14 @@ import { forwardRef } from 'react';
 import type { IconProps } from '../types';
 
 export const WindowAdvanced = forwardRef<SVGSVGElement, IconProps>(
-    ({ size = 16, color, style, ...props }, ref) => (
+    ({ size = 16, color = 'currentColor', style, ...props }, ref) => (
         <svg
             ref={ref}
-            data-testid="oxobz-icon"
-            height={size}
-            strokeLinejoin="round"
             viewBox="0 0 16 16"
+            height={size}
             width={size}
-            style={{ color: color ?? 'currentcolor', ...style }}
+            data-slot="oxobz-icon"
+            style={{ color: color === 'currentColor' ? 'currentColor' : `var(--ds-${color})`, ...style }}
             {...props}
         >
             <path fillRule="evenodd" clipRule="evenodd"
@@ -18,7 +17,7 @@ export const WindowAdvanced = forwardRef<SVGSVGElement, IconProps>(
                                                     fill="currentColor"></path>
                                                 <g clipPath="url(#a)">
                                                     <path d="M9 12.5 12.5 7v3.5H15L11.5 16v-3.5H9Z" fill="currentColor"
-                                                        stroke="currentColor"></path>
+                                                        stroke="currentColor" strokeLinejoin="round"></path>
                                                 </g>
                                                 <defs>
                                                     <clipPath id="a">

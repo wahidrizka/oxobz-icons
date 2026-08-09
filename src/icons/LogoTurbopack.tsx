@@ -2,15 +2,14 @@ import { forwardRef } from 'react';
 import type { IconProps } from '../types';
 
 export const LogoTurbopack = forwardRef<SVGSVGElement, IconProps>(
-    ({ size = 16, color, style, ...props }, ref) => (
+    ({ size = 16, color = 'currentColor', style, ...props }, ref) => (
         <svg
             ref={ref}
-            data-testid="oxobz-icon"
-            height={size}
-            strokeLinejoin="round"
             viewBox="0 0 16 16"
+            height={size}
             width={size}
-            style={{ color: color ?? 'currentcolor', ...style }}
+            data-slot="oxobz-icon"
+            style={{ color: color === 'currentColor' ? 'currentColor' : `var(--ds-${color})`, ...style }}
             {...props}
         >
             <g clipPath="url(#clip0_872_3187)">
@@ -22,7 +21,7 @@ export const LogoTurbopack = forwardRef<SVGSVGElement, IconProps>(
                                                     </mask>
                                                     <rect x="3.5" y="3.5" width="9" height="9" rx="0.5"
                                                         stroke="var(--ds-gray-1000)" fill="transparent" strokeWidth="4"
-                                                        mask="url(#path-2-inside-1_872_3187)"></rect>
+                                                        mask="url(#path-2-inside-1_872_3187)" strokeLinejoin="round"></rect>
                                                 </g>
                                                 <defs>
                                                     <linearGradient id="paint0_linear_872_3187" x1="8.68832"

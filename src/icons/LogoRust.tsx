@@ -2,15 +2,14 @@ import { forwardRef } from 'react';
 import type { IconProps } from '../types';
 
 export const LogoRust = forwardRef<SVGSVGElement, IconProps>(
-    ({ size = 16, color, style, ...props }, ref) => (
+    ({ size = 16, color = 'currentColor', style, ...props }, ref) => (
         <svg
             ref={ref}
-            data-testid="oxobz-icon"
-            height={size}
-            strokeLinejoin="round"
             viewBox="0 0 16 16"
+            height={size}
             width={size}
-            style={{ color: color ?? 'currentcolor', ...style }}
+            data-slot="oxobz-icon"
+            style={{ color: color === 'currentColor' ? 'currentColor' : `var(--ds-${color})`, ...style }}
             {...props}
         >
             <path
@@ -19,7 +18,7 @@ export const LogoRust = forwardRef<SVGSVGElement, IconProps>(
                                                     strokeLinejoin="round"></path>
                                                 <path
                                                     d="M8.00009 14.4906C11.5847 14.4906 14.4907 11.5846 14.4907 8C14.4907 4.41536 11.5847 1.50943 8.00009 1.50943C4.41545 1.50943 1.50952 4.41536 1.50952 8C1.50952 11.5846 4.41545 14.4906 8.00009 14.4906Z"
-                                                    stroke="currentColor" strokeWidth="1.35849" fill="transparent">
+                                                    stroke="currentColor" strokeWidth="1.35849" fill="transparent" strokeLinejoin="round">
                                                 </path>
                                                 <path d="M14.9436 8.45283L15.6983 8L14.9436 7.54717V8.45283Z"
                                                     fill="currentColor" stroke="currentColor" strokeWidth="0.45283"

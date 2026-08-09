@@ -5,7 +5,7 @@
                                                     stroke-linejoin="round"></path>
                                                 <path
                                                     d="M8.00009 14.4906C11.5847 14.4906 14.4907 11.5846 14.4907 8C14.4907 4.41536 11.5847 1.50943 8.00009 1.50943C4.41545 1.50943 1.50952 4.41536 1.50952 8C1.50952 11.5846 4.41545 14.4906 8.00009 14.4906Z"
-                                                    stroke="currentColor" stroke-width="1.35849" fill="transparent">
+                                                    stroke="currentColor" stroke-width="1.35849" fill="transparent" stroke-linejoin="round">
                                                 </path>
                                                 <path d="M14.9436 8.45283L15.6983 8L14.9436 7.54717V8.45283Z"
                                                     fill="currentColor" stroke="currentColor" stroke-width="0.45283"
