@@ -9,6 +9,7 @@ export const ClockDashed = forwardRef<SVGSVGElement, IconProps>(
             height={size}
             width={size}
             data-slot="oxobz-icon"
+            data-glyph="circular"
             style={{ color: color === 'currentColor' ? 'currentColor' : `var(--ds-${color})`, ...style }}
             {...props}
         >

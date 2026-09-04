@@ -12,8 +12,7 @@ export const LogoVercel = forwardRef<SVGSVGElement, IconProps>(
             style={{ color: color === 'currentColor' ? 'currentColor' : `var(--ds-${color})`, ...style }}
             {...props}
         >
-            <path fillRule="evenodd" clipRule="evenodd" d="M8 1L16 15H0L8 1Z"
-                                                    fill="currentColor"></path>
+            <g><path fillRule="evenodd" clipRule="evenodd" d="M8 1L16 15H0L8 1Z" fill="currentColor"></path></g>
         </svg>
     ),
 );
