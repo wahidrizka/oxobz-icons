@@ -28,12 +28,15 @@
  *   it, and our SVG sources were updated to match
  * - fill="currentColor" on inner elements (NOT on <svg>)
  *
- * NOT reproduced: `data-glyph`. Production tags some icons (e.g. the circular
- * ones) with it and two CSS rules key off `[data-glyph=circular]` for optical
- * spacing. The per-icon values live in Vercel's private assets package, and
- * only one value ("circular") is observable from the public bundles — so the
- * mapping for our 541 icons is unknown and is deliberately left out rather
- * than guessed.
+ * `data-glyph`: production tags some icons (e.g. the circular ones) with it,
+ * and two CSS rules key off `[data-glyph=circular]` for optical spacing. The
+ * per-icon values live in Vercel's private assets package, so the full mapping
+ * for our 541 icons is unknown and is NOT guessed. Instead this is now
+ * SOURCE-DRIVEN: if a source SVG's <svg> tag carries `data-glyph="..."`, the
+ * generator passes it through; otherwise none is emitted. Add it to a source
+ * SVG only for a value actually OBSERVED on a live Geist page. So far only
+ * "circular" is observable, and only `question.svg` has been confirmed
+ * (measured on /geist/shadows, the "Usage" column help icon, 31 Aug 2026).
  *
  * Usage: npm run generate
  */
@@ -215,6 +218,15 @@ async function generateIcon(svgPath: string): Promise<{ name: string; fileName: 
     const viewBoxMatch = svgContent.match(/viewBox="([^"]+)"/);
     const viewBox = viewBoxMatch ? viewBoxMatch[1] : '0 0 16 16';
 
+    // data-glyph: only some Geist icons carry it, and the sole value observable
+    // from public bundles is "circular". Read it straight from the source SVG's
+    // <svg> tag, so the per-icon value lives in the source of truth and is only
+    // ever an OBSERVED value, never a guess. Icons whose source has no
+    // data-glyph emit none, exactly as before. (See the header note.)
+    const openTag = svgContent.match(/<svg[^>]*>/i)?.[0] ?? '';
+    const glyphMatch = openTag.match(/data-glyph="([^"]+)"/);
+    const dataGlyph = glyphMatch ? glyphMatch[1] : null;
+
     // Extract inner SVG content (everything inside <svg>...</svg>)
     const innerMatch = svgContent.match(/<svg[^>]*>([\s\S]*)<\/svg>/i);
     const innerContent = innerMatch ? innerMatch[1].trim() : '';
@@ -229,6 +241,10 @@ async function generateIcon(svgPath: string): Promise<{ name: string; fileName: 
     const aspectRatio = vb.length === 4 && vb[3] ? vb[2] / vb[3] : 1;
     const widthExpr = aspectRatio === 1 ? '{size}' : `{size * ${aspectRatio}}`;
 
+    // Emitted right after data-slot, matching production's attribute order
+    // (data-slot, then data-glyph). Empty for icons without an observed value.
+    const glyphLine = dataGlyph ? `\n            data-glyph="${dataGlyph}"` : '';
+
     const component = `import { forwardRef } from 'react';
 import type { IconProps } from '../types';
 
@@ -239,7 +255,7 @@ export const ${componentName} = forwardRef<SVGSVGElement, IconProps>(
             viewBox="${viewBox}"
             height={size}
             width=${widthExpr}
-            data-slot="oxobz-icon"
+            data-slot="oxobz-icon"${glyphLine}
             style={{ color: color === 'currentColor' ? 'currentColor' : \`var(--ds-\${color})\`, ...style }}
             {...props}
         >
