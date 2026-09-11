@@ -12,9 +12,7 @@ export const ChevronRight = forwardRef<SVGSVGElement, IconProps>(
             style={{ color: color === 'currentColor' ? 'currentColor' : `var(--ds-${color})`, ...style }}
             {...props}
         >
-            <path fillRule="evenodd" clipRule="evenodd"
-                                                    d="M5.50001 1.93933L6.03034 2.46966L10.8536 7.29288C11.2441 7.68341 11.2441 8.31657 10.8536 8.7071L6.03034 13.5303L5.50001 14.0607L4.43935 13L4.96968 12.4697L9.43935 7.99999L4.96968 3.53032L4.43935 2.99999L5.50001 1.93933Z"
-                                                    fill="currentColor"></path>
+            <path fill="currentColor" fillRule="evenodd" clipRule="evenodd" d="m5.5 1.94.53.53 4.82 4.82a1 1 0 0 1 0 1.42l-4.82 4.82-.53.53L4.44 13l.53-.53L9.44 8 4.97 3.53 4.44 3z"></path>
         </svg>
     ),
 );
